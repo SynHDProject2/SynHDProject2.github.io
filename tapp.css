@@ -1,0 +1,130 @@
+log {
+  display: block;
+  border: 3px solid black;
+  background-color: white;
+  padding: 10px;
+  height: 100vh;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+@font-face {
+  font-family: 'Big Shoulders Display';
+  src: url("./BigShouldersDisplay.ttf");
+  font-display: swap;
+}
+
+@media (min-width:600px) {
+  .fourth { height: 80vh; }
+}
+
+@media (max-width: 599px) {
+  .fourth {
+    height: 20vh;
+    padding-top: 20px;
+  }
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 6px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  margin-bottom: 4px;
+}
+
+.rotate-down {
+  animation: rotate-down 0.3s ease-in-out forwards;
+  -webkit-animation: rotate-down 0.3s ease-in-out forwards;
+}
+
+.rotate-right {
+  animation: rotate-right 0.3s ease-in-out forwards;
+  -webkit-animation: rotate-right 0.3s ease-in-out forwards;
+}
+
+@keyframes rotate-down {
+  0%   {transform: rotate(-45deg)}
+  100% {transform: rotate(45deg)}
+}
+
+@-webkit-keyframes rotate-down {
+  0%   {transform: rotate(-45deg)}
+  100% {transform: rotate(45deg)}
+
+}
+
+@keyframes rotate-right {
+  0%   {transform: rotate(45deg)}
+  100% {transform: rotate(-45deg)}
+}
+
+@-webkit-keyframes rotate-right {
+  0%   {transform: rotate(45deg)}
+  100% {transform: rotate(-45deg)}
+}
+
+.expand {
+  animation: expand 0.5s ease-in-out forwards;
+  -webkit-animation: expand 0.5s ease-in-out forwards;
+}
+
+.contract {
+  animation: contract 0.5s ease-in-out forwards;
+  -webkit-animation: contract 0.5s ease-in-out forwards;
+}
+
+@keyframes expand {
+  0%   {max-height: 0em}
+  100% {max-height: 100em}
+}
+
+@-webkit-keyframes expand {
+  0%   {max-height: 0em}
+  100% {max-height: 100em}
+
+}
+
+@keyframes contract {
+  0%   {max-height: 100em}
+  100% {max-height: 0}
+}
+
+@-webkit-keyframes contract {
+  0%   {max-height: 100em}
+  100% {max-height: 0}
+}
+
+
+#mainInput {
+  left: 37.5%;
+  top: 50%;
+  width: 25%;
+  height: 11.111111111%;
+}
+
+#createInput {
+  left: 20%;
+  top: 30%;
+  width: 20%;
+  height: 10%;
+}
+
+input {
+  position: absolute;
+  background-color: transparent;
+  color: transparent;
+  border: none;
+  caret-color: transparent;
+}
+
+input:focus {
+    outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
