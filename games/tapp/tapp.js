@@ -1076,6 +1076,19 @@ class GameGUI {
       text("Armor: " + Player.clickPlayer.armor, 11 * width / 24, height * 0.4);
       text("Speed: " + Player.clickPlayer.speed, 11 * width / 24, height * 0.48);
     }
+    for (let i = 0; i < players.length; i++) {
+      let pHand = players[i].hand;
+      if (pHand.length > 0) {
+        let labelX = pHand[0].x;
+        let labelY = pHand[0].y;
+        if (pHand[0].side % 2 == 0) {
+          labelY += height / 6; // below vertical hands
+        } else {
+        labelX += width / 10; // to the right of horizontal hands
+        }
+      text(players[i].name, labelX, labelY, fontSize / 25, "#000000");
+      }
+    }
   }
 
   static drawInfo() {
