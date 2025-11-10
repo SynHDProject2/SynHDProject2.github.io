@@ -148,7 +148,19 @@ let message = function(event) {
       Player.target = players[hand].pos;
       Player.nextTarget();
     }
-
+     if (Player.count(true) === players.length) {
+      players.sort((a, b) => {
+        if (b.speed === a.speed) {
+          return Math.random() - 0.5;
+        }
+        return b.speed - a.speed;
+      });
+            for (let i = 0; i < players.length; i++) {
+        players[i].id = i;
+      }
+      currentTurn = 0;
+      log("#000000" + players[currentTurn].name + " will go first (highest speed).");
+    }
     window.requestAnimationFrame(GameGUI.draw);
   } else if (event.message.startsWith("Grab")) {
     let data = event.message.slice(4).split(";");
@@ -788,6 +800,7 @@ class GameGUI {
                 log("#000000It's not your turn " + players[currentTurn].name + "!");
                 return;
               }
+              
               send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
               currentTurn = (currentTurn + 1) % players.length;
               log("#000000It's now " + players[currentTurn].name + "'s turn!");
@@ -814,10 +827,12 @@ class GameGUI {
               log("#000000It's not your turn " + players[currentTurn].name + "!");
               return;
             }
-            send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
-            currentTurn = (currentTurn + 1) % players.length;
-            log("#000000It's now " + players[currentTurn].name + "'s turn!");
-            Player.nextTarget();
+            else {
+              send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
+              currentTurn = (currentTurn + 1) % players.length;
+              log("#000000It's now " + players[currentTurn].name + "'s turn!");
+              Player.nextTarget();
+            }
           } else {
             Player.clickPlayer = players[i];
           }
@@ -918,9 +933,10 @@ class GameGUI {
             log("#000000It's not your turn " + players[currentTurn].name + "!");
             return;
           }
-          send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
+          else {send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
           currentTurn = (currentTurn + 1) % players.length;
           log("#000000It's now " + players[currentTurn].name + "'s turn!");
+          }
           Player.nextTarget();
         }
       }
