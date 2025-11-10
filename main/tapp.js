@@ -598,19 +598,7 @@ class ClassGUI {
         }
 
         send(playerStats);
-        players.sort((a, b) => {
-          if (b.speed === a.speed) {
-          return Math.random() - 0.5;
-          }
-          return b.speed - a.speed;
-          });
-          
-          
-          for (let i = 0; i < players.length; i++) {
-          players[i].id = i;
-          }
-          currentTurn = 0;
-          log("#000000" + players[currentTurn].name + " will go first (highest speed).");
+        
         GameGUI.start();
         return;
       }
