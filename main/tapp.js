@@ -800,7 +800,6 @@ class GameGUI {
                 log("#000000It's not your turn " + players[currentTurn].name + "!");
                 return;
               }
-              
               send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
               currentTurn = (currentTurn + 1) % players.length;
               log("#000000It's now " + players[currentTurn].name + "'s turn!");
@@ -933,10 +932,9 @@ class GameGUI {
             log("#000000It's not your turn " + players[currentTurn].name + "!");
             return;
           }
-          else {send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
+          send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + vars);
           currentTurn = (currentTurn + 1) % players.length;
           log("#000000It's now " + players[currentTurn].name + "'s turn!");
-          }
           Player.nextTarget();
         }
       }
@@ -946,7 +944,7 @@ class GameGUI {
         if (Player.clickCard == null) {
           for (let i = 0; i < players.length; i++) {
             if (players[i].hand.length > 3) {
-              log("#000000All players must have three cards to reshuffle!");
+              log("#000000All players must have at most three cards to reshuffle!");
               return;
             }
           }
