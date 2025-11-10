@@ -598,6 +598,19 @@ class ClassGUI {
         }
 
         send(playerStats);
+        players.sort((a, b) => {
+          if (b.speed === a.speed) {
+          return Math.random() - 0.5;
+          }
+          return b.speed - a.speed;
+          });
+          
+          
+          for (let i = 0; i < players.length; i++) {
+          players[i].id = i;
+          }
+          currentTurn = 0;
+          log("#000000" + players[currentTurn].name + " will go first (highest speed).");
         GameGUI.start();
         return;
       }
@@ -723,6 +736,19 @@ class GameGUI {
     }
     GameGUI.toggleListeners(true);
     window.requestAnimationFrame(GameGUI.draw);
+    for (let i = 0; i < players.length; i++) {
+      let pHand = players[i].hand;
+      if (pHand.length > 0) {
+        let labelX = pHand[0].x;
+        let labelY = pHand[0].y;
+        if (pHand[0].side % 2 == 0) {
+          labelY += height / 6; // below vertical hands
+        } else {
+        labelX += width / 10; // to the right of horizontal hands
+        }
+      text(players[i].name, labelX, labelY, fontSize / 25, "#000000");
+      }
+    }
   }
 
   static click(event) {
@@ -1037,6 +1063,19 @@ class GameGUI {
     if (Player.clickCard2 != null) {
       ctx.drawImage(Player.clickCard2.image, 3 * width / 16, height / 32, 3 * width / 8, 3 * height / 4);
     }
+    for (let i = 0; i < players.length; i++) {
+      let pHand = players[i].hand;
+      if (pHand.length > 0) {
+        let labelX = pHand[0].x;
+        let labelY = pHand[0].y;
+        if (pHand[0].side % 2 == 0) {
+          labelY += height / 6; // below vertical hands
+        } else {
+        labelX += width / 10; // to the right of horizontal hands
+        }
+      text(players[i].name, labelX, labelY, fontSize / 25, "#000000");
+      }
+    }
     if (GameGUI.screen == 1) {
       rect(3 * width / 8, height / 2, width / 2, height / 2, "#f0f0f0");
       text("Tokens", width * 0.2125, height / 2, fontSize / 8);
@@ -1076,19 +1115,7 @@ class GameGUI {
       text("Armor: " + Player.clickPlayer.armor, 11 * width / 24, height * 0.4);
       text("Speed: " + Player.clickPlayer.speed, 11 * width / 24, height * 0.48);
     }
-    for (let i = 0; i < players.length; i++) {
-      let pHand = players[i].hand;
-      if (pHand.length > 0) {
-        let labelX = pHand[0].x;
-        let labelY = pHand[0].y;
-        if (pHand[0].side % 2 == 0) {
-          labelY += height / 6; // below vertical hands
-        } else {
-        labelX += width / 10; // to the right of horizontal hands
-        }
-      text(players[i].name, labelX, labelY, fontSize / 25, "#000000");
-      }
-    }
+    
   }
 
   static drawInfo() {
