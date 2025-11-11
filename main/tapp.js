@@ -155,10 +155,7 @@ let message = function(event) {
         }
         return b.speed - a.speed;
       });
-            for (let i = 0; i < players.length; i++) {
-        players[i].id = i;
-      }
-      currentTurn = 0;
+      currentTurn = players[0].id;
       log("#000000" + players[currentTurn].name + " will go first (highest speed).");
     }
     window.requestAnimationFrame(GameGUI.draw);
