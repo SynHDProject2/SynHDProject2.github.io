@@ -94,7 +94,7 @@ let ctx = canvas.getContext("2d");
 let width, height, fontSize;
 // canvas.style.transform = "scale(0.25)";
 // canvas.style.transformOrigin = "top left";
-canvas.style.zoom = 1;
+canvas.style.zoom = 0.25;
 
 let message = function(event) {
   if (event.message.startsWith("TP")) {
