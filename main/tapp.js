@@ -151,14 +151,21 @@ let message = function(event) {
       Player.nextTarget();
     }
      if (Player.count(true) === players.length) {
-      players.sort((a, b) => {
-        if (b.speed === a.speed) {
-          return Math.random() - 0.5;
+      let fastestPlayerIndex = 0;
+      let highestSpeed = -Infinity;
+    
+      for (let i = 0; i < players.length; i++) {
+        if (players[i].speed > highestSpeed) {
+          highestSpeed = players[i].speed;
+          fastestPlayerIndex = i;
+        } else if (players[i].speed === highestSpeed && Math.random() < 0.5) {
+          fastestPlayerIndex = i;
         }
-        return b.speed - a.speed;
-      });
-      currentTurn = players[0].id;
-      log("#000000" + players[currentTurn].name + " will go first (highest speed).");
+      }
+    
+      // Set current turn to that player's index (no ID reset)
+      currentTurn = fastestPlayerIndex;
+      log("#000000" + players[currentTurn].name + " will go first (highest speed: " + highestSpeed + ").");
     }
     window.requestAnimationFrame(GameGUI.draw);
   } else if (event.message.startsWith("Grab")) {
