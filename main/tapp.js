@@ -806,11 +806,11 @@ class GameGUI {
                 log("#000000It's not your turn " + players[currentTurn].name + "!");
                 return;
               }
-              send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
               log(currentTurn);
               currentTurn = (currentTurn + 1) % players.length;
               log(currentTurn);
               log("#000000It's now " + players[currentTurn].name + "'s turn!");
+              send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
               Player.nextTarget();
             } 
             else {
@@ -836,9 +836,11 @@ class GameGUI {
               return;
             }
             else {
-              send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
+              log(currentTurn);
               currentTurn = (currentTurn + 1) % players.length;
+              log(currentTurn);
               log("#000000It's now " + players[currentTurn].name + "'s turn!");
+              send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
               Player.nextTarget();
             }
           } else {
@@ -941,11 +943,11 @@ class GameGUI {
             log("#000000It's not your turn " + players[currentTurn].name + "!");
             return;
           }
-          send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + vars);
           log(currentTurn);
           currentTurn = (currentTurn + 1) % players.length;
-          log("#000000It's now " + players[currentTurn].name + "'s turn!");
           log(currentTurn);
+          log("#000000It's now " + players[currentTurn].name + "'s turn!");
+          send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + vars);
           Player.nextTarget();
         }
       }
