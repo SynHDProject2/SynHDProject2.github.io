@@ -4,7 +4,7 @@ let RARTS = ["2C1", "2C2", "2C3", "2R1", "2R2", "2E1", "1M1"];
 let gameId = null;
 let hand = -1;
 let players = [];
-let currentTurn = 0; 
+var currentTurn = 0;
 
 let classTypes = {
   "Knight":"W",
