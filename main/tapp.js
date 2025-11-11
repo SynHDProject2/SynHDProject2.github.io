@@ -807,7 +807,9 @@ class GameGUI {
                 return;
               }
               send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
+              log(currentTurn);
               currentTurn = (currentTurn + 1) % players.length;
+              log(currentTurn);
               log("#000000It's now " + players[currentTurn].name + "'s turn!");
               Player.nextTarget();
             } 
@@ -940,8 +942,10 @@ class GameGUI {
             return;
           }
           send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + vars);
+          log(currentTurn);
           currentTurn = (currentTurn + 1) % players.length;
           log("#000000It's now " + players[currentTurn].name + "'s turn!");
+          log(currentTurn);
           Player.nextTarget();
         }
       }
