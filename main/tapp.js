@@ -803,7 +803,7 @@ class GameGUI {
             }
             if (clickCard == "SE1" && Player.recycle[0] == -1) {
               if (hand !== currentTurn) {
-                log("#000000It's not your turn " + players[currentTurn].name + "!");
+                log("#000000It's not your turn!");
                 return;
               }
               log(currentTurn);
@@ -832,7 +832,7 @@ class GameGUI {
           }
           if (clickCard == "SE1" && Player.recycle[0] == -1) {
             if (hand !== currentTurn) {
-              log("#000000It's not your turn " + players[currentTurn].name + "!");
+              log("#000000It's not your turn!");
               return;
             }
             else {
@@ -940,10 +940,10 @@ class GameGUI {
             return;
           }
           if (hand !== currentTurn) {
-            log("#000000It's not your turn " + players[currentTurn].name + "!");
+            log("#000000It's not your turn!");
             return;
           }
-          log(currentTurn);
+          log("1");
           currentTurn = (currentTurn + 1) % players.length;
           log(currentTurn);
           log("#000000It's now " + players[currentTurn].name + "'s turn!");
