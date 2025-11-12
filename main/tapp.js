@@ -808,7 +808,8 @@ class GameGUI {
               }
               send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
               Player.nextTarget();
-              currentTurn = (currentTurn + 1) % players.length;
+              currentTurn = currentTurn + 1; 
+              currentTurn = currentTurn % players.length;
               log("#000000It's now " + players[currentTurn].name + "'s turn!");
             } 
             else {
@@ -833,12 +834,11 @@ class GameGUI {
               log("#000000It's not your turn!");
               return;
             }
-            else {
-              send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
-              Player.nextTarget();
-              currentTurn = (currentTurn + 1) % players.length;
-              log("#000000It's now " + players[currentTurn].name + "'s turn!");
-            }
+            send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
+            Player.nextTarget();
+            currentTurn = currentTurn + 1;
+            currentTurn = currentTurn % players.length;
+            log("#000000It's now " + players[currentTurn].name + "'s turn!");
           } else {
             Player.clickPlayer = players[i];
           }
@@ -941,7 +941,8 @@ class GameGUI {
           }
           send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + vars);
           Player.nextTarget();
-          currentTurn = (currentTurn + 1) % players.length;
+          currentTurn = currentTurn + 1;
+          currentTurn = currentTurn % players.length;
           log("#000000It's now " + players[currentTurn].name + "'s turn!");
         }
       }
