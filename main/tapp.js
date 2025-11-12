@@ -806,12 +806,10 @@ class GameGUI {
                 log("#000000It's not your turn!");
                 return;
               }
-              log(currentTurn);
-              currentTurn = (currentTurn + 1) % players.length;
-              log(currentTurn);
-              log("#000000It's now " + players[currentTurn].name + "'s turn!");
               send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
               Player.nextTarget();
+              currentTurn = (currentTurn + 1) % players.length;
+              log("#000000It's now " + players[currentTurn].name + "'s turn!");
             } 
             else {
               Player.clickPlayer = players[i];
@@ -836,12 +834,10 @@ class GameGUI {
               return;
             }
             else {
-              log(currentTurn);
-              currentTurn = (currentTurn + 1) % players.length;
-              log(currentTurn);
-              log("#000000It's now " + players[currentTurn].name + "'s turn!");
               send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
               Player.nextTarget();
+              currentTurn = (currentTurn + 1) % players.length;
+              log("#000000It's now " + players[currentTurn].name + "'s turn!");
             }
           } else {
             Player.clickPlayer = players[i];
@@ -943,12 +939,10 @@ class GameGUI {
             log("#000000It's not your turn!");
             return;
           }
-          log("1");
-          currentTurn = (currentTurn + 1) % players.length;
-          log(currentTurn);
-          log("#000000It's now " + players[currentTurn].name + "'s turn!");
           send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + vars);
           Player.nextTarget();
+          currentTurn = (currentTurn + 1) % players.length;
+          log("#000000It's now " + players[currentTurn].name + "'s turn!");
         }
       }
     }
