@@ -158,10 +158,8 @@ let message = function(event) {
       }
       return b.speed - a.speed;
     });
-    var turnOrder = sortedPlayers.map(p => p.id);
+    turnOrder = sortedPlayers.map(p => p.id);
     currentTurn = turnOrder[0];
-  
-    log("#000000Turn order by speed: " + turnOrder.join(", "));
     log("#000000" + players[currentTurn].name + " will go first (highest speed).");
     }
     window.requestAnimationFrame(GameGUI.draw);
@@ -827,7 +825,7 @@ class GameGUI {
             }
           }
           if (clickCard == "SE1" && Player.recycle[0] == -1) {
-            if (hand !== currentTurn) {
+            if (Player.id !== currentTurn) {
               log("#000000It's not your turn!");
               return;
             }
@@ -932,7 +930,7 @@ class GameGUI {
           } else if (clickCard == "SE1") {
             return;
           }
-          if (hand !== currentTurn) {
+          if (Player.id !== currentTurn) {
             log("#000000It's not your turn!");
             return;
           }
