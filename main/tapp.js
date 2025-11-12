@@ -5,6 +5,7 @@ let gameId = null;
 let hand = -1;
 let players = [];
 var currentTurn = 0;
+var turnOrder = [];
 
 let classTypes = {
   "Knight":"W",
@@ -151,21 +152,17 @@ let message = function(event) {
       Player.nextTarget();
     }
      if (Player.count(true) === players.length) {
-      let fastestPlayerIndex = 0;
-      let highestSpeed = -Infinity;
-    
-      for (let i = 0; i < players.length; i++) {
-        if (players[i].speed > highestSpeed) {
-          highestSpeed = players[i].speed;
-          fastestPlayerIndex = i;
-        } else if (players[i].speed === highestSpeed && Math.random() < 0.5) {
-          fastestPlayerIndex = i;
-        }
+      let sortedPlayers = [...players].sort((a, b) => {
+      if (b.speed === a.speed) {
+        return Math.random() - 0.5;
       }
-    
-      // Set current turn to that player's index (no ID reset)
-      currentTurn = fastestPlayerIndex;
-      log("#000000" + players[currentTurn].name + " will go first (highest speed: " + highestSpeed + ").");
+      return b.speed - a.speed;
+    });
+    var turnOrder = sortedPlayers.map(p => p.id);
+    currentTurn = turnOrder[0];
+  
+    log("#000000Turn order by speed: " + turnOrder.join(", "));
+    log("#000000" + players[currentTurn].name + " will go first (highest speed).");
     }
     window.requestAnimationFrame(GameGUI.draw);
   } else if (event.message.startsWith("Grab")) {
@@ -802,14 +799,14 @@ class GameGUI {
               }
             }
             if (clickCard == "SE1" && Player.recycle[0] == -1) {
-              if (hand !== currentTurn) {
+              if (Player.id !== currentTurn) {
                 log("#000000It's not your turn!");
                 return;
               }
               send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
               Player.nextTarget();
-              currentTurn = currentTurn + 1; 
-              currentTurn = currentTurn % players.length;
+              let currentIndex = turnOrder.indexOf(currentTurn);
+              currentTurn = turnOrder[(currentIndex + 1) % turnOrder.length];
               log("#000000It's now " + players[currentTurn].name + "'s turn!");
             } 
             else {
@@ -836,8 +833,8 @@ class GameGUI {
             }
             send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + i);
             Player.nextTarget();
-            currentTurn = currentTurn + 1;
-            currentTurn = currentTurn % players.length;
+            let currentIndex = turnOrder.indexOf(currentTurn);
+            currentTurn = turnOrder[(currentIndex + 1) % turnOrder.length];
             log("#000000It's now " + players[currentTurn].name + "'s turn!");
           } else {
             Player.clickPlayer = players[i];
@@ -941,8 +938,8 @@ class GameGUI {
           }
           send("Play" + hand + ";" + Player.clickCard.card[0] + Player.clickCard.card[1] + ";" + Player.targetId() + ";" + vars);
           Player.nextTarget();
-          currentTurn = currentTurn + 1;
-          currentTurn = currentTurn % players.length;
+          let currentIndex = turnOrder.indexOf(currentTurn);
+          currentTurn = turnOrder[(currentIndex + 1) % turnOrder.length];
           log("#000000It's now " + players[currentTurn].name + "'s turn!");
         }
       }
