@@ -93,7 +93,6 @@ let incantationNames = ["King's Blessing", "Super Speed", "Arcanography", "Ultim
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let width, height, fontSize;
-// canvas.style.transform = "scale(0.25)";
 // canvas.style.transformOrigin = "top left";
 canvas.style.zoom = 0.25;
 
@@ -1984,7 +1983,6 @@ let resize = function() {
   height = Math.round(canvas.getBoundingClientRect().height / 4);
   canvas.width = width * 4;
   canvas.height = height * 4;
-  ctx.scale(4, 4);
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   if (width / 2 < height) {
