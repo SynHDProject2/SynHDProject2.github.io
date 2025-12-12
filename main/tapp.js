@@ -93,7 +93,7 @@ let incantationNames = ["King's Blessing", "Super Speed", "Arcanography", "Ultim
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let width, height, fontSize;
-let scale = 0.25*window.innerWidth / canvas.width;
+let scale = 0.4*window.innerWidth / canvas.width;
 canvas.style.transform = `scale(${scale})`;
 canvas.style.transformOrigin = "top left";
 
