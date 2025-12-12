@@ -93,8 +93,9 @@ let incantationNames = ["King's Blessing", "Super Speed", "Arcanography", "Ultim
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let width, height, fontSize;
-// canvas.style.transformOrigin = "top left";
-canvas.style.zoom = 0.25;
+let scale = window.innerWidth / canvas.width;
+canvas.style.transform = `scale(${scale})`;
+canvas.style.transformOrigin = "top left";
 
 let message = function(event) {
   if (event.message.startsWith("TP")) {
