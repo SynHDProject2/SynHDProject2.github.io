@@ -148,7 +148,7 @@ let message = function(event) {
       Player.target = players[hand].pos;
       Player.nextTarget();
     }
-     if (Player.count(true) === players.length) {
+     if (Player.count(true) === players.length && turnOrder.length === 0) {
       let sortedPlayers = [...players].sort((a, b) => {
       if (b.speed === a.speed) {
         return Math.random() - 0.5;
